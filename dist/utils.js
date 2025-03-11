@@ -71,12 +71,15 @@ function toComponentReverse(obj) {
 exports.toComponentReverse = toComponentReverse;
 function getSuperSlot(obj) {
     let curr = Object.getPrototypeOf(obj);
-    while ((curr === null || curr === void 0 ? void 0 : curr.constructor) !== index_1.Base) {
-        const slot = getSlot(curr);
-        if (slot) {
-            return slot;
+    console.log(typeof (curr));
+    if (curr != null) {
+        while (curr.constructor !== index_1.Base) {
+            const slot = getSlot(curr);
+            if (slot) {
+                return slot;
+            }
+            curr = Object.getPrototypeOf(curr);
         }
-        curr = Object.getPrototypeOf(curr);
     }
     return null;
 }
