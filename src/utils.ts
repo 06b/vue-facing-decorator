@@ -102,7 +102,7 @@ export function toComponentReverse(obj: any) {
 
 export function getSuperSlot(obj: any) {
     let curr = Object.getPrototypeOf(obj)
-    if (curr != null) {
+    if (curr) {
         while (curr.constructor !== Base) {
             const slot = getSlot(curr)
             if (slot) {
