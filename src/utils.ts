@@ -102,15 +102,16 @@ export function toComponentReverse(obj: any) {
 
 export function getSuperSlot(obj: any) {
     let curr = Object.getPrototypeOf(obj)
-
+    // Uncaught TypeError: Cannot read properties of null (reading 'constructor')
+    if (curr !== null) {
         while (curr.constructor !== Base) {
             const slot = getSlot(curr)
             if (slot) {
                 return slot
             }
             curr = Object.getPrototypeOf(curr)
-        
         }
+    }
     return null
 }
 
