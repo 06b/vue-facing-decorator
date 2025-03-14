@@ -65,21 +65,19 @@ function toComponentReverse(obj) {
     do {
         arr.unshift(curr);
         curr = Object.getPrototypeOf(curr);
-    } while (curr.constructor !== index_1.Base && !getSlot(curr));
+    } while (curr !== null && curr.constructor !== index_1.Base && !getSlot(curr)); // Uncaught TypeError: Cannot read properties of null (reading 'constructor')
     return arr;
 }
 exports.toComponentReverse = toComponentReverse;
 function getSuperSlot(obj) {
     let curr = Object.getPrototypeOf(obj);
     // Uncaught TypeError: Cannot read properties of null (reading 'constructor')
-    if (curr !== null) {
-        while (curr.constructor !== index_1.Base) {
-            const slot = getSlot(curr);
-            if (slot) {
-                return slot;
-            }
-            curr = Object.getPrototypeOf(curr);
+    while (curr !== null && curr.constructor !== index_1.Base) {
+        const slot = getSlot(curr);
+        if (slot) {
+            return slot;
         }
+        curr = Object.getPrototypeOf(curr);
     }
     return null;
 }
