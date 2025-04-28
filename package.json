@@ -1,6 +1,6 @@
 {
   "name": "vue-facing-decorator",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "Vue typescript class and decorator based component.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -35,11 +35,11 @@
     "test-stage2": "env TS_NODE_PROJECT='./test/tsconfig/tsconfig.deco-stage2.json' mocha -r ts-node/register --project ./test/tsconfig.json test/test.ts",
     "test-stage3": "env TS_NODE_PROJECT='./test/tsconfig/tsconfig.deco-stage3.json' mocha -r ts-node/register --project ./test/tsconfig.json test/test.ts",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "./node_modules/.bin/tsc --project ./tsconfig/tsconfig.cjs.json",
-    "build:esm": "./node_modules/.bin/tsc --project ./tsconfig/tsconfig.esm.json",
+    "build:cjs": "tsc",
+    "build:esm": "tsc -outDir dist/esm -module ES6",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "watch": "./node_modules/.bin/tsc -outDir dist/esm -module ES6 --watch"
+    "watch": "tsc -outDir dist/esm -module ES6 --watch"
   },
   "author": "",
   "license": "MIT",
@@ -64,10 +64,5 @@
     "ts-node": "^10.8.1",
     "typescript": "^5.1.6",
     "vue": "^3.2.37"
-  },
-  "homepage": "https://github.com/facing-dev/vue-facing-decorator",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:facing-dev/vue-facing-decorator.git"
   }
 }
